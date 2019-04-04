@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="raw">
+    <div class="col-md-12">
+        <form method="post" role="form" class="form-group"
+              action="{{ url_for('new_post')}}">
+            {{ post_form.csrf_token }}<br>
+            {{ post_form.title }}<br>
+            {{ category_form.category }}<br>
+            {{ post_form.body }}<br>
+            {{ post_form.submit }}
+        </form>
+    </div>
+</div>
+<script type="text/javascript"
+        src=" {{url_for('static', filename='ckeditor/ckeditor.js')}} ">
+</script>
+{{ ckeditor.config(name='body') }}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block container %}
+    <div class="column col-md-3">
+        {% include '_sidebar.html' %}
+    </div>
+    <div class="column col-md-6 col-md-offset-2">
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}
