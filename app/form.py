@@ -29,7 +29,7 @@ class CategoryForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    title = StringField('标题', validators=[DataRequired(), Length(1, 20)],
+    title = StringField('标题', validators=[DataRequired()],
                         render_kw={'class': 'form-control', 'placeholder': '请输入文章标题'})
     body = CKEditorField('正文', validators=[DataRequired()],
                          render_kw={'class': 'form-control', 'placeholder': '请输入正文'})
