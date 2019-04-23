@@ -130,7 +130,7 @@ def post_list():
         return render_template('post_list.html', posts=None, )
     categories = sidebars()
     page = request.args.get('page', type=int)
-    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(page, per_page=8)
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(page, per_page=6)
     posts_pagination = pagination.items
     return render_template('post_list.html', categories=categories, pagination=pagination,
                            posts_pagination=posts_pagination)
@@ -146,7 +146,7 @@ def my_post():
     page = request.args.get('page', type=int)
     pagination = Post.query.filter_by(
         user_id=current_user.id).order_by(
-        Post.timestamp.desc()).paginate(page, per_page=8)
+        Post.timestamp.desc()).paginate(page, per_page=6)
     posts_pagination = pagination.items
     return render_template(
             'post_list.html', categories=categories, pagination=pagination, posts_pagination=posts_pagination)
@@ -157,13 +157,13 @@ def post_list_category(category):
     if current_user.is_authenticated:
         categories = sidebar()
         page = request.args.get('page', type=int)
-        pagination = Post.query.filter_by(user_id=current_user.id).filter_by(category=category).paginate(page, per_page=8)
+        pagination = Post.query.filter_by(user_id=current_user.id).filter_by(category=category).paginate(page, per_page=6)
         posts_pagination = pagination.items
         return render_template('post_list.html', pagination=pagination,
                                categories=categories, posts_pagination=posts_pagination)
     categories = sidebars()
     page = request.args.get('page', type=int)
-    pagination = Post.query.filter_by(category=category).paginate(page, per_page=8)
+    pagination = Post.query.filter_by(category=category).paginate(page, per_page=6)
     posts_pagination = pagination.items
     return render_template('post_list.html', pagination=pagination,
                            categories=categories, posts_pagination=posts_pagination)
@@ -173,7 +173,7 @@ def post_list_category(category):
 def post_list_user(user_id):
     categories = sidebars()
     page = request.args.get('page', type=int)
-    pagination = Post.query.filter_by(user_id=user_id).paginate(page, per_page=8)
+    pagination = Post.query.filter_by(user_id=user_id).paginate(page, per_page=6)
     posts_pagination = pagination.items
     return render_template('post_list.html', pagination=pagination,
                            categories=categories, posts_pagination=posts_pagination)
