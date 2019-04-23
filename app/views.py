@@ -156,13 +156,23 @@ def post_list_category(category):
     if current_user.is_authenticated:
         categories = sidebar()
         page = request.args.get('page', type=int)
-        pagination = Post.query.filter_by(user_id=current_user.id).filter_by(category=category).paginate(page, per_page=3)
+        pagination = Post.query.filter_by(user_id=current_user.id).filter_by(category=category).paginate(page, per_page=5)
         posts_pagination = pagination.items
         return render_template('post_list.html', pagination=pagination,
                                categories=categories, posts_pagination=posts_pagination)
     categories = sidebars()
     page = request.args.get('page', type=int)
-    pagination = Post.query.filter_by(category=category).paginate(page, per_page=3)
+    pagination = Post.query.filter_by(category=category).paginate(page, per_page=6)
+    posts_pagination = pagination.items
+    return render_template('post_list.html', pagination=pagination,
+                           categories=categories, posts_pagination=posts_pagination)
+
+
+@app.route('/post_list_category/<int:user_id>')
+def post_list_user(user_id):
+    categories = sidebars()
+    page = request.args.get('page', type=int)
+    pagination = Post.query.filter_by(user_id=user_id).paginate(page, per_page=5)
     posts_pagination = pagination.items
     return render_template('post_list.html', pagination=pagination,
                            categories=categories, posts_pagination=posts_pagination)
