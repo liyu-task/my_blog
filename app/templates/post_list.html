@@ -10,7 +10,7 @@
             </a>
         </small>
     </h3>
-    <div>{{ post.body|safe|truncate}}</div>
+    <div>{{ post.body|safe|truncate(20)}}</div>
         {% if current_user.is_authenticated %}
             <a class='btn' href="{{ url_for('edit_post', post_id=post.id) }}">
                     <i class="glyphicon glyphicon-edit"></i>编辑
