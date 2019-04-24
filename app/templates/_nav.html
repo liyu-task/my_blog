@@ -1,27 +1,24 @@
 <div class="raw">
-        <nav class="navbar" role="navigation">
-            <div class="container">
-                <div class="col-md-3">
-                    <div class="navbar-head">
-                        {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('index') }}" class="navbar-brand">
-                            {{ current_user.username|title }}的博客
-                        </a>
-                        {% else %}
-                        <a href="{{ url_for('index') }}" class="navbar-brand">
-                        欢迎回来!
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="navbar-header">
+    <nav class="navbar" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menu1">
+                        <span class="sr-only">切换导航</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                </div>
-                <div class="collapse navbar-collapse navbar-right" id="menu1">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('index') }}" class="navbar-brand">
+                            {{ current_user.username|title }}的博客
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('index') }}" class="navbar-brand">
+                        欢迎回来!
+                        </a>
+                    {% endif %}
+            </div>
+                <div class="collapse navbar-collapse" id="menu1">
                     <ul class="nav navbar-nav nav-pills">
                         <li>
                             <a href="{{ url_for('index') }}"><i class="glyphicon glyphicon-home"></i> 主页</a>
@@ -50,6 +47,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>
