@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menu1">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu1">
                         <span class="sr-only">切换导航</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -18,7 +18,7 @@
                         </a>
                     {% endif %}
             </div>
-                <div class="collapse navbar-collapse" id="menu1">
+                <div class="collapse navbar-collapse navbar-right" id="menu1">
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="{{ url_for('index') }}"><i class="glyphicon glyphicon-home"></i> 主页</a>
