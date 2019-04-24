@@ -2,15 +2,15 @@
     <div class="raw">
         <div class="column column-12 text-center">
             <br>
-            <nav class="navbar" role="navigation">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target="#menu2">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header text-center">
+                    <button  type="button" class="btn btn-primary navbar-toggle" data-toggle="collapse" data-target="#menu2">
                         分类列表
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="menu2">
+                <div class="collapse navbar-collapse " id="menu2">
                     <ul class="navbar-nav nav nav-stacked">
-                        <li>
+                        <li class="text-center">
                         {% if categories==None %}
                             <a class="text-warning bg-dark text-center" href="#">还没有分类</a>
                         {% else %}
@@ -20,7 +20,7 @@
                                 </a>
                             {% endfor %}
                         {% endif %}
-                    </li>
+                        </li>
                     </ul>
                 </div>
             </nav>

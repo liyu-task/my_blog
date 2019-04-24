@@ -20,10 +20,10 @@
             </div>
                 <div class="collapse navbar-collapse navbar-right" id="menu1">
                     <ul class="nav navbar-nav">
-                        <li>
+                        <li class="text-center">
                             <a href="{{ url_for('index') }}"><i class="glyphicon glyphicon-home"></i> 主页</a>
                         </li>
-                        <li>
+                        <li class="text-center">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-target="1">
                                     <i class="glyphicon glyphicon-book"></i> 文章
                             </a>
@@ -32,17 +32,17 @@
                                 <li class="text-center"><a href="{{ url_for('post_list') }}">网站文章</a></li>
                             </ul>
                             </li>
-                        <li>
+                        <li class="text-center">
                             <a href="{{ url_for('login') }}"><i class="glyphicon glyphicon-log-in"></i> 登陆</a>
                         </li>
-                        <li>
+                        <li class="text-center">
                             <a onclick="return confirm('确定退出登陆吗？')" href="{{ url_for('logout') }}">
                                 <i class="glyphicon glyphicon-log-out"></i> 退出</a>
                         </li>
-                        <li>
+                        <li class="text-center">
                             <a href="{{ url_for('register') }}"><i class="glyphicon glyphicon-user"></i> 注册</a>
                         </li>
-                        <li>
+                        <li class="text-center">
                             <a href="{{ url_for('contact') }}"><i class="glyphicon glyphicon-envelope"></i> 联系我</a>
                         </li>
                     </ul>
