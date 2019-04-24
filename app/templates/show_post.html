@@ -17,7 +17,7 @@
                 {% include '_sidebar.html' %}
             </div>
             <div class="col-md-8 col-md-offset-1">
-                <h3>{{ post.title|title }}</h3>
+                <h4>{{ post.title|title }}</h4>
                 <span class="badge">作者</span>
                 <a href="{{ url_for('post_list_user',user_id=post.user.id) }}">
                     {{ post.user.username|title }}</a> |

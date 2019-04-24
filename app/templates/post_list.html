@@ -2,14 +2,14 @@
 {% block content %}
 {% if posts_pagination %}
     {% for post in posts_pagination %}
-    <h3>
+    <h4>
         <a href="{{url_for('show_post', post_id=post.id)}}">{{ post.title |title}}</a>
         <small>
             <a class="badge" href="{{ url_for('post_list_category',category=post.category) }}">
                 {{ post.category }}
             </a>
         </small>
-    </h3>
+    </h4>
     <div>{{ post.body|safe|truncate(20) }}</div>
     <hr>
     {% endfor %}
