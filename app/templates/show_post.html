@@ -1,38 +1,68 @@
-{% extends 'main.html' %}
-{% block content %}
-    <h3>{{ post.title|title }}</h3>
-    <span class="badge">作者</span>
-    <a href="{{ url_for('post_list_user',user_id=post.user.id) }}">{{ post.user.username|title }}</a> |
-    <span class="badge">分类</span>
-    <a href="{{ url_for('post_list_category',category=post.category) }}">{{ post.category|title }}</a>
-    <hr>
-    <div>{{ post.body|safe }}</div>
-    <hr>
-    <div class="raw">
-        {% if current_user.is_authenticated %}
-        <div class="column col-md-2">
-            <a class='btn' href="{{ url_for('edit_post', post_id=post.id) }}">
-                <i class="glyphicon glyphicon-edit"></i>编辑
-            </a>
-        </div>
-        <div class="column col-md-2">
-            <a class="btn" onclick="return confirm('确定要删除吗？')" href="{{ url_for('delete_post', post_id=post.id) }}">
-                <i class="glyphicon glyphicon-remove"></i>删除
-            </a>
-        </div>
-        <div class="col-md-4 col-md-offset-4 text-right ">
-            <small class="inline text-right">
-            {{ moment(post.timestamp).format('YYYY-MM-DD HH:mm') }}
-            <i class="glyphicon glyphicon-pencil"></i>
-        </small>
-        </div>
-        {% else %}
-        <div class="col-md-4 col-md-offset-8 text-right">
-            <small >{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm') }}</small>
-            <i class="glyphicon glyphicon-pencil"></i>
-        </div>
-        {% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="{{ post.title|title }} {{ post.category|title }}">
+    <meta name="description" content="{{ post.body|safe|truncate(30) }}">
+    <meta name="author" content="{{ post.user.username|title }}">
+    <title>{{ post.title|title }}</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        {% include '_nav.html' %}
+        <div class="raw">
+            <div class="col-md-2">
+                {% include '_sidebar.html' %}
+            </div>
+            <div class="col-md-8 col-md-offset-1">
+                <h3>{{ post.title|title }}</h3>
+                <span class="badge">作者</span>
+                <a href="{{ url_for('post_list_user',user_id=post.user.id) }}">
+                    {{ post.user.username|title }}</a> |
+                <span class="badge">分类</span>
+                <a href="{{ url_for('post_list_category',category=post.category) }}">
+                    {{ post.category|title }}</a>
+                <hr>
+                <div>{{ post.body|safe }}</div>
+                <hr>
+                <div class="raw">
+                    {% if current_user.is_authenticated %}
+                    <div class="col-md-2">
+                        <a class='btn' href="{{ url_for('edit_post', post_id=post.id) }}">
+                            <i class="glyphicon glyphicon-edit"></i>编辑
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn" onclick="return confirm('确定要删除吗？')" href="{{ url_for('delete_post', post_id=post.id) }}">
+                            <i class="glyphicon glyphicon-remove"></i>删除
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4 text-right ">
+                        <small class="inline text-right">
+                            {{ moment(post.timestamp).format('YYYY-MM-DD HH:mm') }}
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </small>
+                    </div>
+                    {% else %}
+                    <div class="col-md-4 col-md-offset-8 text-right">
+                        <small >{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm') }}</small>
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+       </div>
     </div>
-
-
-{% endblock %}
+<script type="text/javascript"
+        src=" {{url_for('static', filename='js/jquery-3.3.1.min.js')}} "></script>
+<script type="text/javascript"
+        src=" {{url_for('static', filename='js/popper.min.js')}} "></script>
+<script type="text/javascript"
+        src=" {{url_for('static', filename='js/bootstrap.min.js')}} "></script>
+    {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
+    {{ moment.include_jquery() }}
+    {{ moment.locale('zh-cn') }}
+</body>
+</html>
