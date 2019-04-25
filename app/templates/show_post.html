@@ -13,10 +13,10 @@
     <div class="container">
         {% include '_nav.html' %}
         <div class="raw">
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-2 col-lg-2">
                 {% include '_sidebar.html' %}
             </div>
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-8 col-sm-8 col-lg-8 col-sm-offset-1 col-lg-offset-1 col-md-offset-1">
                 <h4>{{ post.title|title }}</h4>
                 <span class="badge">作者</span>
                 <a href="{{ url_for('post_list_user',user_id=post.user.id) }}">

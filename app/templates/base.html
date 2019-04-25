@@ -11,14 +11,16 @@
 </head>
 <body>
 <div class="container">
-    {% include '_nav.html' %}
     <div class="raw">
-    {% block container %}
-    {% endblock %}
+        {% include '_nav.html' %}
     </div>
     <div class="raw">
-    {% block footer %}
-    {% endblock %}
+        {% block container %}
+        {% endblock %}
+    </div>
+    <div class="raw">
+        {% block footer %}
+        {% endblock %}
     </div>
 </div>
 <script type="text/javascript"
