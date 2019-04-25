@@ -14,7 +14,9 @@
                 {% for message in  get_flashed_messages() %}
                 {{ message }}
                 {% endfor %}
-                <br><br><p>还没有帐号？点击<a href="{{ url_for('register') }}">这里</a>注册</p>
+                <!--
+                <br><br><p>还没有帐号？点击<a href="#">这里</a>注册</p>
+                -->
             </div>
         </form>
 {% endblock %}

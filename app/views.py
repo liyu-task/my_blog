@@ -45,7 +45,7 @@ def login():
                 flash('用户名或密码出错，请重新输入！')
                 return render_template('login.html', form=form)
         else:
-            return redirect(url_for('register'))
+            return flash('本站暂时不开放注册端口！')
     return render_template('login.html', form=form)
 
 
@@ -55,6 +55,7 @@ def logout():
     return render_template('home.html')
 
 
+"""
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     form = RegisterForm()
@@ -69,6 +70,7 @@ def register():
         login_user(user)
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
+"""
 
 
 @app.route('/contact')

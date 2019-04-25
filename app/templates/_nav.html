@@ -24,7 +24,7 @@
                             <a href="{{ url_for('index') }}"><i class="glyphicon glyphicon-home"></i> 主页</a>
                         </li>
                         <li class="text-center">
-                            <a class="dropdown-toggle" data-toggle="dropdown" data-target="1">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-target="1">
                                     <i class="glyphicon glyphicon-book"></i> 文章
                             </a>
                             <ul class="dropdown-menu" id="1">
@@ -39,9 +39,12 @@
                             <a onclick="return confirm('确定退出登陆吗？')" href="{{ url_for('logout') }}">
                                 <i class="glyphicon glyphicon-log-out"></i> 退出</a>
                         </li>
+                        <!--注册端口，已关闭-->
+                        <!--
                         <li class="text-center">
-                            <a href="{{ url_for('register') }}"><i class="glyphicon glyphicon-user"></i> 注册</a>
+                            <a href="#"><i class="glyphicon glyphicon-user"></i> 注册</a>
                         </li>
+                        -->
                         <li class="text-center">
                             <a href="{{ url_for('contact') }}"><i class="glyphicon glyphicon-envelope"></i> 联系我</a>
                         </li>
