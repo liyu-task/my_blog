@@ -12,13 +12,16 @@
 </head>
 <body>
 <div class="container">
+    <!--导航栏-->
     <div class="raw">
         {% include '_nav.html' %}
     </div>
+    <!--内容-->
     <div class="raw">
         {% block container %}
         {% endblock %}
     </div>
+    <!--页脚链接-->
     <div class="raw">
         {% block footer %}
         {% endblock %}

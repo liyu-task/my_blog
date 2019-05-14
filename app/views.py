@@ -6,6 +6,7 @@ from app.model import Post, User
 from flask_login import login_required, current_user, login_user, logout_user
 
 
+# 重定向函数
 def redirect_back(default='hello', **kwargs):
     for target in request.args.get('next'), request.referrer:
         if target:
@@ -13,6 +14,7 @@ def redirect_back(default='hello', **kwargs):
     return redirect(url_for(default, **kwargs))
 
 
+# 错误处理路由
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('/errors/404.html'), 404
@@ -23,11 +25,13 @@ def sever_error(e):
     return render_template('/errors/500.html'), 500
 
 
+# 主页
 @app.route('/')
 def index():
     return render_template('home.html')
 
 
+# 登陆
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
@@ -49,12 +53,14 @@ def login():
     return render_template('login.html', form=form)
 
 
+# 登出
 @app.route('/logout')
 def logout():
     logout_user()
     return render_template('home.html')
 
 
+# 注册端口暂时注释掉，待用户管理模块上线后再开启
 """
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -78,6 +84,7 @@ def contact():
     return render_template('contact.html')
 
 
+# 分类去重函数（当前用户）
 def sidebar():
     post_all = Post.query.filter_by(user_id=current_user.id).all()
     vii = set()
@@ -88,6 +95,7 @@ def sidebar():
     return categories
 
 
+# 分类去重函数（所有文章）
 def sidebars():
     post_all = Post.query.all()
     vii = set()
@@ -98,6 +106,7 @@ def sidebars():
     return categories
 
 
+# 创建文章
 @app.route('/new_post', methods=['POST', 'GET'])
 @login_required
 def new_post():
@@ -117,6 +126,7 @@ def new_post():
                            categories=categories, category_form=category_form)
 
 
+# 阅读文章
 @app.route('/show_post/<int:post_id>')
 def show_post(post_id):
     post = Post.query.get(post_id)
@@ -125,6 +135,7 @@ def show_post(post_id):
     return render_template('show_post.html', categories=categories, post=post, posts=posts)
 
 
+# 文章列表
 @app.route('/post_list')
 def post_list():
     posts = Post.query.all()
@@ -138,6 +149,7 @@ def post_list():
                            posts_pagination=posts_pagination)
 
 
+# 用户自己的文章列表
 @app.route('/my_post')
 @login_required
 def my_post():
@@ -154,6 +166,7 @@ def my_post():
             'post_list.html', categories=categories, pagination=pagination, posts_pagination=posts_pagination)
 
 
+# 文章按类列表
 @app.route('/post_list_category/<string:category>')
 def post_list_category(category):
     if current_user.is_authenticated:
@@ -171,6 +184,7 @@ def post_list_category(category):
                            categories=categories, posts_pagination=posts_pagination)
 
 
+# 文章按作者列表
 @app.route('/post_list_category/<int:user_id>')
 def post_list_user(user_id):
     categories = sidebars()
@@ -181,6 +195,7 @@ def post_list_user(user_id):
                            categories=categories, posts_pagination=posts_pagination)
 
 
+# 删除文章
 @app.route('/delete_post/<int:post_id>', methods=['POST', 'GET'])
 @login_required
 def delete_post(post_id):
@@ -190,6 +205,7 @@ def delete_post(post_id):
     return redirect_back()
 
 
+# 编辑文章
 @app.route('/edit_post/<int:post_id>', methods=['POST', 'GET'])
 @login_required
 def edit_post(post_id):

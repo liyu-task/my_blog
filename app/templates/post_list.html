@@ -1,6 +1,8 @@
 {% extends 'main.html' %}
 {% block content %}
+<!--如果文章不为空就遍历-->
 {% if posts_pagination %}
+    <!--遍历文章-->
     {% for post in posts_pagination %}
     <h4>
         <a href="{{url_for('show_post', post_id=post.id)}}">{{ post.title |title}}</a>
@@ -14,6 +16,7 @@
     <hr>
     {% endfor %}
 {% else %}
+    <!--文章为空就新建-->
     <div class="text-center">
         <p>当前没有文章,您可以点击<a href="{{ url_for('new_post') }}">这里</a>新建文章</p>
         <p>或者<a href="{{ url_for('post_list') }}">阅读</a>其他人的文章</p>
@@ -25,6 +28,7 @@
     </a>
 </div>
 <hr>
+ <!--分页-->
 <div class="raw">
     <div class="col-md-5 col-md-offset-1">
         <nav role='navigation'>

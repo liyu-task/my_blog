@@ -1,8 +1,12 @@
+<!--继承模板-->
 {% extends 'base.html' %}
+<!--分为两列-->
 {% block container %}
+    <!--侧边栏-->
     <div class="col-md-2 col-sm-2 col-lg-2">
         {% include '_sidebar.html' %}
     </div>
+    <!--内容-->
     <div class="col-md-8 col-sm-8 col-lg-8 col-sm-offset-1 col-lg-offset-1 col-md-offset-1">
         {% block content %}
         {% endblock %}
