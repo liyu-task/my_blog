@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="编程 python flask linux git 数据库">
+    <meta name="description" content="李宇的个人博客平台，记录分享个人编程笔记">
+    <meta name="author" content="李宇,878077525@qq.com">
+    <title>liyu-task.com 李宇的技术博客</title>
+    <link rel="icon" href="../static/logo.png" title="liyu-task">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <!--导航栏-->
+    <div class="raw">
+        {% include '_nav.html' %}
+    </div>
+    <!--内容-->
+    <div class="raw">
+        {% block container %}
+        {% endblock %}
+    </div>
+    <!--页脚链接-->
+    <div class="raw">
+        {% block footer %}
+        {% endblock %}
+    </div>
+</div>
+<script type="text/javascript"
+        src=" {{url_for('static', filename='js/jquery-3.3.1.min.js')}} "></script>
+<script type="text/javascript"
+        src=" {{url_for('static', filename='js/popper.min.js')}} "></script>
+<script type="text/javascript"
+        src=" {{url_for('static', filename='js/bootstrap.min.js')}} "></script>
+    {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
+    {{ moment.include_jquery() }}
+    {{ moment.locale('zh-cn') }}
+</body>
+</html>

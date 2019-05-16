@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="raw">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <br>
+            <!--自适应-->
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand"><small><b>文章分类</b></small></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu2">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse " id="menu2">
+                    <ul class="navbar-nav nav nav-stacked">
+                        <li class="text-center">
+                        {% if categories==None %}
+                            <a class="text-warning bg-dark text-center" href="#">还没有分类</a>
+                        {% else %}
+                            {% for category in categories %}
+                                <a class="bg-black text-center"
+                                   href="{{ url_for('post_list_category',category=category) }}">{{ category }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

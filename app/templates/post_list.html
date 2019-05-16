@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% block content %}
+<!--如果文章不为空就遍历-->
+{% if posts_pagination %}
+    <!--遍历文章-->
+    {% for post in posts_pagination %}
+    <h4>
+        <a href="{{url_for('show_post', post_id=post.id)}}">{{ post.title |title}}</a>
+        <small>
+            <a class="badge" href="{{ url_for('post_list_category',category=post.category) }}">
+                {{ post.category }}
+            </a>
+        </small>
+    </h4>
+    <div>{{ post.body|safe|truncate(20) }}</div>
+    <hr>
+    {% endfor %}
+{% else %}
+    <!--文章为空就新建-->
+    <div class="text-center">
+        <p>当前没有文章,您可以点击<a href="{{ url_for('new_post') }}">这里</a>新建文章</p>
+        <p>或者<a href="{{ url_for('post_list') }}">阅读</a>其他人的文章</p>
+    </div>
+{% endif %}
+<div>
+    <a href="{{ url_for('new_post')}}">
+    <i class="glyphicon glyphicon-pencil"></i> 新建文章
+    </a>
+</div>
+<hr>
+ <!--分页-->
+<div class="raw">
+    <div class="col-md-5 col-md-offset-1">
+        <nav role='navigation'>
+            <ul class="pager">
+                {% if not pagination.has_prev %}
+                <li class="page-item disable">
+                    <a href="#">上一页</a>
+                </li>
+                {% else %}
+                <li class="page-item bg-primary">
+                    <a href="{{ url_for('post_list', page=pagination.prev_num) }}">上一页</a>
+                </li>
+                {% endif %}
+                {% if not pagination.has_next %}
+                <li class="page-item disable">
+                <a href="#">下一页</a>
+                </li>
+                {% else %}
+                <li class="page-item bg-primary">
+                    <a href="{{ url_for('post_list', page=pagination.next_num) }}">下一页</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

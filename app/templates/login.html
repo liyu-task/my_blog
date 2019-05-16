@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block container %}
+    <div class="col-md-6 col-sm-6 col-lg-6"><br>
+      <img src="../static/main.jpg" class="img-responsive img-rounded">
+    </div>
+    <div class="col-md-4 col-sm-4 col-lg-4 col-sm-offset-1 col-lg-offset-1 col-md-offset-1">
+        <form role="form" method="post" class="horizontal" action="{{ url_for('login') }}">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <br><br><br>
+                {{ form.username }}<br><br>
+                {{ form.password() }}<br><br>
+                {{ form.login }}
+                {% for message in  get_flashed_messages() %}
+                {{ message }}
+                {% endfor %}
+                <!--
+                <br><br><p>还没有帐号？点击<a href="#">这里</a>注册</p>
+                -->
+            </div>
+        </form>
+{% endblock %}
